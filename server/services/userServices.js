@@ -1,10 +1,11 @@
 const { User } = require("../models/user")
 const { genetareToken } = require("../utils/genearteToken")
 
-const auth = async () => {
+const auth = async (apphudId) => {
     const token = genetareToken()
     const user = await User.create({
-        apiKey: token
+        apiKey: token,
+        apphudId
     })
     return user
 }

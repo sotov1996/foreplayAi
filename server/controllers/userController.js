@@ -1,8 +1,9 @@
 const userServices = require("../services/userServices")
 
-const auth = async (_, res) => {
+const auth = async (req, res) => {
     try {
-        const data = await userServices.auth()
+        const apphudId = req.query.apphud_id
+        const data = await userServices.auth(apphudId)
 
         return res.status(200).json(data)
       } catch (e) {
