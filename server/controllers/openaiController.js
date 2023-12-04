@@ -4,11 +4,13 @@ const { pickupPrompts } = require("../data")
 
 const generateAnswer = async (req, res) => {
     try {
-        if (!req.body.length) {
+        const { messages, screenType, isProfile } = req.body
+
+        if (!messages?.length || !screenType || isProfile === undefined) {
             return res.status(400).send("Bad request")
         }
 
-        const text = req.body.join()
+        const text = messages.join()
         const data = await openaiServices.generateText({ text })
 
         return res.status(200).json({
@@ -16,6 +18,7 @@ const generateAnswer = async (req, res) => {
             text: data,
         })
     } catch (e) {
+        console.log(e)
         return res.status(500).send("generateText error")
     }
 }
