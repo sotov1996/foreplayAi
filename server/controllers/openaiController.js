@@ -1,5 +1,6 @@
 const openaiServices = require("../services/openaiServices")
 const { generateId } = require("../utils/genearteToken")
+const { pickupPrompts } = require("../data")
 
 const generateAnswer = async (req, res) => {
     try {
@@ -45,8 +46,10 @@ const generateAnswerWithMood = async (req, res) => {
 
 const generatePickup = async (_, res) => {
     try {
+        const index = Math.floor(Math.random() * (pickupPrompts.length))
+        const text = pickupPrompts[index]
         const data = await openaiServices.generateText({
-          text: "generate pickup text"
+          text
         })
 
         return res.status(200).json({
