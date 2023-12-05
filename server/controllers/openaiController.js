@@ -10,7 +10,7 @@ const generateAnswer = async (req, res) => {
             return res.status(400).send("Bad request")
         }
 
-        const text = messages.join()
+        const text = messages.map( message => message.text).join()
         const data = await openaiServices.generateText({ text })
 
         return res.status(200).json({
