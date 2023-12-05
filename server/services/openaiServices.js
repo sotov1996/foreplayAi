@@ -55,7 +55,7 @@ const generateText = async (body) => {
         throw error
     }
     const data = await response.json()
-    console.log(contents)
+    console.log(data)
     const contents = data.choices[0].message.content
     return contents
 }
