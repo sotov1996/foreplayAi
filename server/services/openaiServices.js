@@ -44,7 +44,7 @@ const generateText = async (body) => {
                     "content": text
                 }
             ],
-            "model": "gpt-3.5-turbo"
+            "model": "gpt-4"
         })
     })
     if (!response.ok) {
