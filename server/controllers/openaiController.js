@@ -50,7 +50,7 @@ const generateAnswerWithMood = async (req, res) => {
 const generatePickup = async (_, res) => {
     try {
         const index = Math.floor(Math.random() * (pickupPrompts.length))
-        const text = pickupPrompts[index]
+        const text = `${pickupPrompts[index]} Up to 180 characters`
         const data = await openaiServices.generateText({
           text
         })
