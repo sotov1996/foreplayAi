@@ -14,11 +14,19 @@ const mood = [
 ]
 
 const pickupPrompts = [
-    "romanitic pick-up text, 180 character",
-    "funny pick-up text, 180 character",
-    "cute pick-up text, 180 character",
-    "cheesy pick-up text, 180 character",
-    "sexy pick-up text, 180 character"
+    "cheezy",
+    "funny",
+    "cute",
+    "sexy",
+    "romanitic",
+    "spicy",
+    "witty",
+    "geeky",
+    "flirty",
+    "punny",
+    "bookish",
+    "lyric-Based",
+    "backhanded compliment"
 ]
 // const pickupPrompts = [
 //     "Imagine you are a dating expert generate romanitic 180 character pick up line text for tinder.",
