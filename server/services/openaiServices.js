@@ -55,10 +55,7 @@ const generateText = async (body) => {
         throw error
     }
     const data = await response.json()
-    const contents = data.choices.reduce((acc, choice) => {
-        acc += choice.message.content
-        return acc
-    }, "")
+    const contents = data.choices[0].message.content
     return contents
 }
 
