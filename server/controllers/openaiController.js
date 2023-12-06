@@ -11,7 +11,7 @@ const generateAnswer = async (req, res) => {
         }
 
         const message = messages.map( message => message.text).join()
-        const text = `You are dating expert. You help young men to pick-up girl (she told me about herself: ${message}) Generate Flirty pick-up text, 180 characters.`
+        const text = `You are dating expert. You help young men to pick-up girl (she told me about herself: ${message}) Generate Flirty pick-up text, from 40 to 90 characters.`
         const data = await openaiServices.generateText({ text })
 
         return res.status(200).json({
