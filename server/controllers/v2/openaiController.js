@@ -12,7 +12,7 @@ const generateAnswer = async (req, res) => {
 
         const message = messages.map( message => message.text).join()
         const moodTitle = mood.map( m => m.key ).join(", ")
-        const text = `You are dating expert. You help young men to pick-up girl (she told me about herself: ${message}) Generate ${moodTitle} pick-up text, from 40 to 90 characters.`
+        const text = `You are dating expert. You help young men to pick-up girl (she told me about herself: ${message}) Generate ${moodTitle} pick-up text, from 30 to 45 characters. Please respond using the same language as used in the context data.`
         const data = await openaiServices.generateText({ text })
 
         const contents = data.split("\n").filter(content => content)
@@ -22,8 +22,8 @@ const generateAnswer = async (req, res) => {
 
             return {
                 id: generateId(),
-                text: modifyContent[1].trim().replace(/\"/g, ""),
-                moodType: modifyContent[0].trim(),
+                text: modifyContent[1],
+                moodType: modifyContent[0],
                 rating
             }
         })
@@ -62,7 +62,7 @@ const generateAnswerWithMood = async (req, res) => {
 const generatePickup = async (_, res) => {
     try {
         const index = Math.floor(Math.random() * (pickupPrompts.length))
-        const text = `You are dating expert. You help young men to pick-up girl. Generate ${pickupPrompts[index]} pick-up text, 180 characters.`
+        const text = `You are dating expert. You help young men to pick-up girl. Generate ${pickupPrompts[index]} pick-up text, 30 to 45 characters. Please respond using the same language as used in the context data.`
         
         const data = await openaiServices.generateText({
           text
