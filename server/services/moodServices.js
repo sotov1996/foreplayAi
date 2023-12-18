@@ -1,5 +1,5 @@
-const { Mood } = require("../models/mood")
-const { mood } = require("../data")
+const { Mood } = require("#models/mood.js")
+const { mood } = require("#data")
 
 const getMood = async () => {
     const user = await Mood.find({})

@@ -1,6 +1,6 @@
-const openaiServices = require("../services/openaiServices")
-const { generateId } = require("../utils/genearteToken")
-const { pickupPrompts } = require("../data")
+const openaiServices = require("#services/openaiServices.js")
+const { generateId } = require("#utils/genearteToken.js")
+const { pickupPrompts } = require("#data")
 
 const generateAnswer = async (req, res) => {
     try {

@@ -1,6 +1,6 @@
-const openaiServices = require("../services/openaiServices")
-const { generateId } = require("../utils/genearteToken")
-const { pickupPrompts, mood } = require("../data")
+const openaiServices = require("#services/openaiServices.js")
+const { generateId } = require("#utils/genearteToken.js")
+const { pickupPrompts, mood } = require("#data")
 
 const generateAnswer = async (req, res) => {
     try {
@@ -13,7 +13,6 @@ const generateAnswer = async (req, res) => {
         const message = messages.map( message => message.text).join()
         const moodTitle = mood.map( m => m.key ).join(", ")
         const text = `You are dating expert. You help young men to pick-up girl (she told me about herself: ${message}) Generate ${moodTitle} pick-up text, from 40 to 90 characters.`
-        console.log("text", text)
         const data = await openaiServices.generateText({ text })
 
         const contents = data.split("\n").filter(content => content)

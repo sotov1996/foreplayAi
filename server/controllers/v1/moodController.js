@@ -1,4 +1,4 @@
-const moodServices = require("../services/moodServices")
+const moodServices = require("#services/moodServices.js")
 
 const getMood = async (_, res) => {
     try {

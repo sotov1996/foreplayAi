@@ -20,6 +20,13 @@
     "server-dev": "env-cmd -f .env.dev nodemon server/server.js",
     "server-prod": "env-cmd -f .env.prod nodemon server/server.js"
   },
+  "imports": {
+    "#controllers/*": "./server/controllers/*",
+    "#utils/*": "./server/utils/*",
+    "#services/*": "./server/services/*",
+    "#data": "./server/data/index.js",
+    "#models/*": "./server/models/*"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {

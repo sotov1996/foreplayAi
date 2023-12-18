@@ -1,5 +1,5 @@
-const { User } = require("../models/user")
-const { genetareToken } = require("../utils/genearteToken")
+const { User } = require("#models/user.js")
+const { genetareToken } = require("#utils/genearteToken.js")
 
 const auth = async (apphudId) => {
     const token = genetareToken()

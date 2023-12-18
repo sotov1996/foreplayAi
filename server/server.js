@@ -2,12 +2,10 @@ const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
 
-const openai = require("./routes/openai");
-const openaiV2 = require("./routes/openaiv2");
-const user = require("./routes/user");
-const mood = require("./routes/mood");
+const routesV1 = require("./routes/v1");
+const routesV2 = require("./routes/v2");
 
-const { mongoConnect } = require("./utils/dbConnect");
+const { mongoConnect } = require("#utils/dbConnect.js");
 
 const { NODE_PORT } = process.env
 
@@ -18,12 +16,12 @@ app.use(cors());
 
 (async () => { await mongoConnect() })();
 
-app.use("/api/v1", user);
-app.use("/api/v1", openai);
-app.use("/api/v1", mood);
+app.use("/api/v1", routesV1.user);
+app.use("/api/v1", routesV1.openai);
+app.use("/api/v1", routesV1.mood);
 
-app.use("/api/v2", user);
-app.use("/api/v2", openaiV2);
-app.use("/api/v2", mood);
+app.use("/api/v2", routesV2.user);
+app.use("/api/v2", routesV2.openai);
+app.use("/api/v2", routesV2.mood);
 
 app.listen(NODE_PORT, () => console.log(`Listening on port ${NODE_PORT}`));
