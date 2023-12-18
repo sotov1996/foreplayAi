@@ -35,12 +35,10 @@ const generateText = async (body) => {
             "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
         },
         body: JSON.stringify({
-            "messages": [
-                {
-                    "role": "user",
-                    "content": text
-                }
-            ],
+            "messages": text.map(t => ({
+                "role": "user",
+                "content": t
+            })),
             "model": "gpt-4"
         })
     })
