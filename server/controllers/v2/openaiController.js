@@ -18,13 +18,13 @@ const generateAnswer = async (req, res) => {
         const contents = data.split("\n").filter(content => content)
         const answer = contents.map(content => {
             const modifyContent = content.split(":")
-            const generateRating = Math.floor(Math.random() * (99 - 65) + 65)
+            const rating = Math.floor(Math.random() * (99 - 65) + 65)
 
             return {
                 id: generateId(),
                 text: modifyContent[1].trim().replace(/\"/g, ""),
                 moodType: modifyContent[0].trim(),
-                rating: generateRating
+                rating
             }
         })
 

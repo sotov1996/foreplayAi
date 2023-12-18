@@ -23,5 +23,6 @@ app.use("/api/v1", routesV1.mood);
 app.use("/api/v2", routesV2.user);
 app.use("/api/v2", routesV2.openai);
 app.use("/api/v2", routesV2.mood);
+app.use("/api/v2", routesV2.coins);
 
 app.listen(NODE_PORT, () => console.log(`Listening on port ${NODE_PORT}`));
