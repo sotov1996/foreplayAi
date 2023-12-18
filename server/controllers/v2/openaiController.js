@@ -11,21 +11,17 @@ const generateAnswer = async (req, res) => {
         }
 
         const message = messages.map( message => message.text).join()
-        const text = mood.map( m => `You are dating expert. You help young men to pick-up girl (she told me about herself: ${message}) Generate ${m.key} pick-up text, from 30 to 45 characters. Please respond using the same language as used in the context data.` )
-        const data = await openaiServices.generateText({ text })
 
-        const contents = data.split("\n").filter(content => content)
-        const answer = contents.map(content => {
-            const modifyContent = content.split(":")
-            const rating = Math.floor(Math.random() * (99 - 65) + 65)
-
+        const answer = await Promise.all(mood.map(async (m) => {
+            const text = [`You are dating expert. You help young men to pick-up girl (she told me about herself: ${message}) Generate ${m.key} pick-up text, from 30 to 45 characters. Please respond using the same language as used in the context data.`]
+            data = await openaiServices.generateText({ text })
             return {
                 id: generateId(),
-                text: modifyContent[1],
-                moodType: modifyContent[0],
-                rating
+                text: data,
+                moodType: m.title,
+                rating: Math.floor(Math.random() * (99 - 65) + 65)
             }
-        })
+        }))
 
         return res.status(200).json(answer)
     } catch (e) {

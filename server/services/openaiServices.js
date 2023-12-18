@@ -25,7 +25,7 @@ const generateText = async (body) => {
             }
         }
         const contents = data.choices[0].message.content
-        return contents
+        return contents.replace(/\"/g, "")
     }
     const url = `https://api.openai.com/v1/chat/completions`
     const response = await fetch(url, {
