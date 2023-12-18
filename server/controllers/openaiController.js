@@ -4,14 +4,14 @@ const { pickupPrompts } = require("../data")
 
 const generateAnswer = async (req, res) => {
     try {
-        const { messages, screenType, isProfile } = req.body
+        const { messages, screenType, isProfile, mood } = req.body
 
         if (!messages?.length || !screenType || isProfile === undefined) {
             return res.status(400).send("Bad request")
         }
 
         const message = messages.map( message => message.text).join()
-        const text = `You are dating expert. You help young men to pick-up girl (she told me about herself: ${message}) Generate Flirty pick-up text, from 40 to 90 characters.`
+        const text = `You are dating expert. You help young men to pick-up girl (she told me about herself: ${message}) Generate ${mood || "Flirty"} pick-up text, from 40 to 90 characters.`
         const data = await openaiServices.generateText({ text })
 
         return res.status(200).json({

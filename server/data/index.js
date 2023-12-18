@@ -11,6 +11,30 @@ const mood = [
         key: "romantic",
         title: "Romantic 🌹",
     },
+    {
+        key: "witty",
+        title: "Witty 🧠"
+    },
+    {
+        key: "cool",
+        title: "Cool 🧊"
+    },
+    {
+        key: "formal",
+        title: "Formal 🎩"
+    },
+    {
+        key: "poetic",
+        title: "Poetic 🍷"
+    },
+    {
+        key: "short",
+        title: "Short 🤏"
+    },
+    {
+        key: "long",
+        title: "Long 🛹"
+    }
 ]
 
 const pickupPrompts = [
