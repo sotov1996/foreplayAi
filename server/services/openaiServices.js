@@ -13,7 +13,7 @@ const generateText = async (body) => {
                     "index": 0,
                     "message": {
                         "role": "assistant",
-                        "content": "\"Unleash your potential, seize opportunities, and create lasting wealth. It's time to fulfill your dreams, Ilya Sotov!\""
+                        "content": "Romantic: \"Your codes captivate me as much as your eyes do.\"\n\nFlirty: \"Are you a loop? Because I can't escape your charm.\"\n\nFormal: \"Your programming skills resonate with utmost beauty.\""
                     },
                     "finish_reason": "stop"
                 }
@@ -24,10 +24,7 @@ const generateText = async (body) => {
                 "total_tokens": 59
             }
         }
-        const contents = data.choices.reduce((acc, choice) => {
-            acc += choice.message.content
-            return acc
-        }, "")
+        const contents = data.choices[0].message.content
         return contents
     }
     const url = `https://api.openai.com/v1/chat/completions`
@@ -55,7 +52,6 @@ const generateText = async (body) => {
         throw error
     }
     const data = await response.json()
-    console.log("data.choices", data.choices)
     const contents = data.choices[0].message.content
     return contents
 }

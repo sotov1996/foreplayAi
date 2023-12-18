@@ -1,6 +1,6 @@
 const openaiServices = require("../services/openaiServices")
 const { generateId } = require("../utils/genearteToken")
-const { pickupPrompts } = require("../data")
+const { pickupPrompts, mood } = require("../data")
 
 const generateAnswer = async (req, res) => {
     try {
@@ -11,13 +11,25 @@ const generateAnswer = async (req, res) => {
         }
 
         const message = messages.map( message => message.text).join()
-        const text = `You are dating expert. You help young men to pick-up girl (she told me about herself: ${message}) Generate Flirty pick-up text, from 40 to 90 characters.`
+        const moodTitle = mood.map( m => m.key ).join(", ")
+        const text = `You are dating expert. You help young men to pick-up girl (she told me about herself: ${message}) Generate ${moodTitle} pick-up text, from 40 to 90 characters.`
+        console.log("text", text)
         const data = await openaiServices.generateText({ text })
 
-        return res.status(200).json({
-            id: generateId(),
-            text: data,
+        const contents = data.split("\n").filter(content => content)
+        const answer = contents.map(content => {
+            const modifyContent = content.split(":")
+            const generateRating = Math.floor(Math.random() * (99 - 65) + 65)
+
+            return {
+                id: generateId(),
+                text: modifyContent[1].trim().replace(/\"/g, ""),
+                moodType: modifyContent[0].trim(),
+                rating: generateRating
+            }
         })
+
+        return res.status(200).json(answer)
     } catch (e) {
         console.log(e)
         return res.status(500).send("generateText error")
