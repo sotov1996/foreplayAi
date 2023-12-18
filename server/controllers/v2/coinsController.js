@@ -59,7 +59,7 @@ const removeCoins = async (req, res) => {
         const data = await coinsServices.findCoins({ userId })
 
         if (!data) {
-            return res.status(400).send("This user has no points")
+            return res.status(400).send("This user don't have points")
         }
 
         const resultCoins = data.coins - coins
